@@ -1,19 +1,15 @@
+import { FormField } from './FormField'
+
 export const RadioGroup = ({
   label,
   field: { name, value, ...fieldProps },
-  form: { touched, errors },
+  form,
   required,
   options,
   ...props
 }) => {
-  const hasError = errors[name] && touched[name]
-
   return (
-    <div className="field">
-      <label htmlFor={name}>
-        {label}
-        {required && <sup className="required">*</sup>}
-      </label>
+    <FormField id={name} label={label} required={required} formProps={form}>
       {options.map((option) => (
         <div key={option.value}>
           <input
@@ -29,7 +25,6 @@ export const RadioGroup = ({
           {option.label}
         </div>
       ))}
-      {hasError && <small className="error">{errors[name]}</small>}
-    </div>
+    </FormField>
   )
 }

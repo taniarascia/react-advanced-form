@@ -10,7 +10,7 @@ export default function App() {
 
   const formSchema = [
     { name: 'name', label: 'Name', componentType: 'text', required: true },
-    { name: 'manager', label: 'Is Manager', componentType: 'checkbox' },
+    { name: 'playable', label: 'Playable', componentType: 'checkbox' },
     {
       name: 'race',
       label: 'Race',
@@ -22,14 +22,19 @@ export default function App() {
       ],
     },
     {
-      name: 'race2',
-      label: 'Race',
+      name: 'class',
+      label: 'Class',
       componentType: 'select',
       options: [
-        { label: 'Human', value: 'human' },
-        { label: 'Dwarf', value: 'dwarf' },
-        { label: 'Elf', value: 'elf' },
+        { label: 'Ranger', value: 'ranger' },
+        { label: 'Wizard', value: 'wizard' },
+        { label: 'Healer', value: 'healer' },
       ],
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      componentType: 'textarea',
     },
   ]
 

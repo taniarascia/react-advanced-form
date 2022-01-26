@@ -10,7 +10,7 @@ import {
 
 const components = [
   { componentType: 'text', component: TextField },
-  { componentType: 'textArea', component: TextArea },
+  { componentType: 'textarea', component: TextArea },
   { componentType: 'select', component: Select },
   { componentType: 'checkbox', component: Checkbox },
   { componentType: 'radioGroup', component: RadioGroup },

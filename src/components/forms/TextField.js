@@ -1,18 +1,14 @@
+import { FormField } from './FormField'
+
 export const TextField = ({
   label,
   field: { name, value, ...fieldProps },
-  form: { touched, errors },
+  form,
   required,
   ...props
 }) => {
-  const hasError = errors[name] && touched[name]
-
   return (
-    <div className="field">
-      <label htmlFor={name}>
-        {label}
-        {required && <sup className="required">*</sup>}
-      </label>
+    <FormField id={name} label={label} required={required} formProps={form}>
       <input
         type="text"
         id={name}
@@ -21,7 +17,6 @@ export const TextField = ({
         {...fieldProps}
         {...props}
       />
-      {hasError && <small className="error">{errors[name]}</small>}
-    </div>
+    </FormField>
   )
 }
