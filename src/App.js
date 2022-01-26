@@ -32,6 +32,16 @@ export default function App() {
       ],
     },
     {
+      name: 'spell',
+      label: 'Spell',
+      componentType: 'select',
+      options: [
+        { label: 'Fire', value: 'fire' },
+        { label: 'Ice', value: 'ice' },
+      ],
+      condition: { key: 'class', value: 'wizard' },
+    },
+    {
       name: 'description',
       label: 'Description',
       componentType: 'textarea',

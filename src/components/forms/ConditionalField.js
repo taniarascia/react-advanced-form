@@ -12,7 +12,7 @@ export const ConditionalField = ({
     } else {
       onShow()
     }
-  }, [collapsed, onCollapse, onShow])
+  }, [collapsed])
 
   return collapsed ? null : children
 }

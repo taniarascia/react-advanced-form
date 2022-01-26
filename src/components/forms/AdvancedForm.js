@@ -1,7 +1,14 @@
 import React from 'react'
 import { Formik, Field } from 'formik'
 
-import { Checkbox, Select, TextArea, TextField, RadioGroup } from '.'
+import {
+  Checkbox,
+  Select,
+  TextArea,
+  TextField,
+  RadioGroup,
+  ConditionalField,
+} from '.'
 import {
   getInitialValues,
   getDefaultValues,
@@ -35,20 +42,52 @@ export const AdvancedForm = ({
       validateOnMount
       {...props}
     >
-      {({ handleSubmit, isSubmitting, isValid }) => {
+      {({
+        handleSubmit,
+        isSubmitting,
+        isValid,
+        setFieldValue,
+        setFieldTouched,
+        values,
+      }) => {
         return (
           <form onSubmit={handleSubmit} className="advanced-form">
-            {schema.map(({ componentType, ...formSchema }) => {
+            {schema.map(({ componentType, condition, ...formSchema }) => {
               if (
                 !components.some(
                   (component) => component.componentType === componentType,
                 )
-              )
+              ) {
                 return null
+              }
 
               const Component = components.find(
                 (component) => component.componentType === componentType,
               ).component
+
+              if (condition) {
+                return (
+                  <ConditionalField
+                    key={formSchema.name}
+                    collapsed={values[condition.key] !== condition.value}
+                    onCollapse={() => {
+                      setFieldValue(
+                        formSchema.name,
+                        defaultValues[formSchema.name],
+                      )
+                      setFieldTouched(formSchema.name, false)
+                    }}
+                    onShow={() => {
+                      setFieldValue(
+                        formSchema.name,
+                        defaultValues[formSchema.name],
+                      )
+                    }}
+                  >
+                    <Field component={Component} {...formSchema} />
+                  </ConditionalField>
+                )
+              }
 
               return (
                 <Field

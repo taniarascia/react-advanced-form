@@ -7,27 +7,29 @@ export const getInitialValues = (defaultValues, initialValues) => {
 }
 
 export const getDefaultValues = (schema) => {
-  return schema.reduce((acc, val) => {
-    let defaultValue
-    switch (val.componentType) {
-      case 'text':
-      case 'textArea':
-      case 'select':
-      case 'radioGroup':
-        defaultValue = ''
-        break
-      case 'checkbox':
-        defaultValue = false
-        break
-      default:
-        defaultValue = ''
-    }
+  return schema
+    .filter((val) => !val.condition)
+    .reduce((acc, val) => {
+      let defaultValue
+      switch (val.componentType) {
+        case 'text':
+        case 'textarea':
+        case 'select':
+        case 'radioGroup':
+          defaultValue = ''
+          break
+        case 'checkbox':
+          defaultValue = false
+          break
+        default:
+          defaultValue = ''
+      }
 
-    return {
-      ...acc,
-      [val.name]: val.defaultValue || defaultValue,
-    }
-  }, {})
+      return {
+        ...acc,
+        [val.name]: val.defaultValue || defaultValue,
+      }
+    }, {})
 }
 
 export const getValidationSchema = (schema) => {
@@ -36,6 +38,7 @@ export const getValidationSchema = (schema) => {
 
     switch (val.componentType) {
       case 'text':
+      case 'textarea':
       case 'select':
       case 'radioGroup':
         validationType = Yup.string()
