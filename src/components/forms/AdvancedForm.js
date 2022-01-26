@@ -69,7 +69,11 @@ export const AdvancedForm = ({
                 return (
                   <ConditionalField
                     key={formSchema.name}
-                    collapsed={values[condition.key] !== condition.value}
+                    show={
+                      condition.operator === '='
+                        ? values[condition.key] === condition.value
+                        : values[condition.key] !== condition.value
+                    }
                     onCollapse={() => {
                       setFieldValue(
                         formSchema.name,

@@ -39,7 +39,7 @@ export default function App() {
         { label: 'Fire', value: 'fire' },
         { label: 'Ice', value: 'ice' },
       ],
-      condition: { key: 'class', value: 'wizard' },
+      condition: { key: 'class', value: 'wizard', operator: '=' },
     },
     {
       name: 'description',
