@@ -1,7 +1,7 @@
 {
-  "name": "forms",
+  "name": "react-advanced-form",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "formik": "^2.2.9",
     "react": "^17.0.2",
