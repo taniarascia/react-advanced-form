@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { AdvancedForm } from './components/forms/AdvancedForm'
 
 export default function App() {
+  const [formValues, setFormValues] = useState([])
+
   const handleSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true)
-    console.log(values)
+    setFormValues(values)
     await new Promise((r) => setTimeout(r, 1000))
     setSubmitting(false)
   }
@@ -51,7 +54,15 @@ export default function App() {
   return (
     <>
       <h1>Advanced Form</h1>
-      <AdvancedForm schema={formSchema} onSubmit={handleSubmit} />
+
+      <div className="flex">
+        <div className="form section">
+          <AdvancedForm schema={formSchema} onSubmit={handleSubmit} />
+        </div>
+        <div className="results section">
+          <pre>{JSON.stringify(formValues, null, 2)}</pre>
+        </div>
+      </div>
     </>
   )
 }

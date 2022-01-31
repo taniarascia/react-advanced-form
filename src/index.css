@@ -1,13 +1,51 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 1rem;
+  background: #f0f0f0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-  margin-top: 0;
+  margin: 1rem auto 2rem;
+  max-width: 1000px;
+}
+
+pre {
+  font-size: 1rem;
+  font-family: Menlo, monospace;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.flex {
+  margin: 0 auto;
+  max-width: 1000px;
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+.section {
+  background: white;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.form.section {
+  flex: 0.5;
+}
+
+.results.section {
+  flex: 1;
 }
 
 .advanced-form input,
@@ -21,6 +59,16 @@ h1 {
 
 .advanced-form input[type='radio'] {
   margin-right: 0.5rem;
+}
+
+.advanced-form input[type='text'],
+.advanced-form textarea,
+.advanced-form select {
+  width: 100%;
+}
+
+.advanced-form textarea {
+  min-height: 100px;
 }
 
 .advanced-form label {
